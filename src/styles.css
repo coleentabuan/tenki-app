@@ -1,0 +1,85 @@
+body {
+  font-family: "Raleway", sans-serif;
+}
+
+.navbar-brand {
+  font-family: "Patua One", cursive;
+  font-size: 3rem;
+}
+.top-container {
+  max-width: 100%;
+}
+.rain-girl {
+  height: 364px;
+  padding-top: 100px;
+  max-width: 100%;
+  padding-right: 50%;
+}
+.current-forecast {
+  padding-top: 50px;
+  padding-left: 50%;
+}
+.date {
+  font-size: 2rem;
+}
+.city {
+  font-size: 2.5rem;
+  font-weight: bolder;
+}
+.time {
+  font-size: 0.8rem;
+}
+.temp {
+  font-size: 3.3rem;
+}
+.tempUnit .tempLink {
+  text-decoration: none;
+  color: #f9a826;
+}
+
+.title-forecast {
+  font-size: 2rem;
+  padding-top: 1rem;
+}
+
+.humidity {
+  font-size: 1rem;
+}
+/* .humid-title {
+  font-size: 1rem;
+} */
+.middle-container {
+  background-color: #c6cde6;
+  font-family: "Raleway", sans-serif;
+  text-align: center;
+  padding: 70px 0;
+  max-width: 100%;
+}
+
+.hourly-title {
+  font-size: 1.2rem;
+  padding-top: 35px;
+  font-weight: bolder;
+}
+.bottom-container {
+  text-align: center;
+  padding: 55px 0 25px;
+  max-width: 100%;
+  margin-bottom: 100px;
+}
+.weekly-info {
+  padding-top: 20px;
+  line-height: 2;
+}
+.card-title {
+  font-size: 1.5rem;
+  font-weight: bolder;
+}
+.degree {
+  font-size: 1.5rem;
+  font-weight: bolder;
+}
+.btn-outline-warning {
+  margin-left: 5px;
+  line-height: 1;
+}
