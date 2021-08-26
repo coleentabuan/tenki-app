@@ -83,3 +83,12 @@ body {
   margin-left: 5px;
   line-height: 1;
 }
+.footer {
+  display: block;
+  margin: 0 auto;
+  width: 300px;
+}
+
+.open-source-link {
+  text-decoration: none;
+}
