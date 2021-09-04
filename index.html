@@ -50,25 +50,32 @@
     </nav>
     <div class="container top-container">
       <div class="row">
-        <div class="col-6">
+        <div class="col-lg-6">
           <div class="current-forecast">
             <div class="date" id="date-time"></div>
             <div class="city" id="city-name"></div>
-
             <div class="title-forecast" id="forecast-description"></div>
-
-            <div class="temp" id="format-temp"></div>
+            <div class="clearfix">
+              <div class="float-left">
+                <span class="temp-icon" id="icon">icon</span>
+                <span class="temp" id="format-temp"></span>
+                <span class="tempUnit">
+                  <a href="#" class="tempLink" id="celcius-unit">℃ |</a>
+                  <a href="#" class="tempLink" id="farenheit-unit">℉</a>
+                </span>
+              </div>
+            </div>
+            <div class="humidity" id="humidity-value"></div>
+            <div class="wind" id="wind-value"></div>
             <!-- <div class="tempUnit"> -->
             <!-- <a href="#" class="tempLink" id="celcius-unit">℃</a> -->
             <!-- |<a href="#" class="tempLink" id="farenheit-unit">℉</a> -->
             <!-- </div> -->
 
             <!-- <span class="humid-title"></span> -->
-            <div class="humidity" id="humidity-value"></div>
-            <div class="wind" id="wind-value"></div>
           </div>
         </div>
-        <div class="col-6">
+        <div class="col-lg-6">
           <img class="rain-girl" src="Image/Rain.svg" alt="Rain" />
         </div>
       </div>

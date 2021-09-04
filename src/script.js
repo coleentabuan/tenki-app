@@ -47,7 +47,7 @@ searchCity.addEventListener("submit", handleSubmit);
 function showCityTemp(response) {
   let cityTemperature = Math.round(response.data.main.temp);
   let displayCityTemp = document.querySelector("#format-temp");
-  displayCityTemp.innerHTML = `${cityTemperature}℃`;
+  displayCityTemp.innerHTML = `${cityTemperature}`;
   //👇👇👇 this is also another format which makes your code even easier to read
   document.querySelector(
     "#humidity-value"
