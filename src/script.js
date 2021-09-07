@@ -58,15 +58,19 @@ function showCityTemp(response) {
     "#forecast-description"
   );
   displayWeatherDescription.innerHTML = weatherDescription;
+  document
+    .querySelector("#icon")
+    .setAttribute(
+      "src",
+      `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+    );
   let cityWindSpeed = Math.round(response.data.wind.speed);
   let displayWindSpeed = document.querySelector("#wind-value");
   displayWindSpeed.innerHTML = `Wind: ${cityWindSpeed} m/s`;
   let locationName = response.data.name;
   let cityName = document.querySelector("#city-name");
   cityName.innerHTML = locationName;
-  // console.log(cityWindSpeed);
 }
-// week 5 homework
 
 function showLocation(event) {
   let latitude = event.coords.latitude;
