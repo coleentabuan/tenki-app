@@ -39,13 +39,16 @@ body {
 }
 .temp {
   font-size: 3.3rem;
-  padding-left: 5px;
+  margin-left: 0;
+  position: relative;
+  left: -7px;
 }
 .tempUnit .tempLink {
   text-decoration: none;
   color: #f9a826;
   position: relative;
   top: -21px;
+  left: -5px;
 }
 
 .tempUnit .active {
