@@ -45,9 +45,9 @@ let searchCity = document.querySelector("#city-form");
 searchCity.addEventListener("submit", handleSubmit);
 
 function showCityTemp(response) {
-  let cityTemperature = Math.round(response.data.main.temp);
+  celsiusTemperature = response.data.main.temp;
   let displayCityTemp = document.querySelector("#format-temp");
-  displayCityTemp.innerHTML = `${cityTemperature}`;
+  displayCityTemp.innerHTML = Math.round(celsiusTemperature);
   //👇👇👇 this is also another format which makes your code even easier to read
   document.querySelector(
     "#humidity-value"
@@ -87,26 +87,32 @@ function getLocalForecast() {
   navigator.geolocation.getCurrentPosition(showLocation);
 }
 
+function clickFarenheit(event) {
+  event.preventDefault();
+  let farenheitTemp = document.querySelector("#format-temp");
+  tempCel.classList.remove("active");
+  tempFar.classList.add("active");
+  farenheitTemp.innerHTML = Math.round((celsiusTemperature * 9) / 5 + 32);
+}
+
+function clickCelcius(event) {
+  event.preventDefault();
+  let celciusTemp = document.querySelector("#format-temp");
+  tempCel.classList.add("active");
+  tempFar.classList.remove("active");
+  celciusTemp.innerHTML = Math.round(celsiusTemperature);
+}
+
+let celsiusTemperature = null;
+
+let tempFar = document.querySelector("#farenheit-unit");
+tempFar.addEventListener("click", clickFarenheit);
+
+let tempCel = document.querySelector("#celcius-unit");
+
+tempCel.addEventListener("click", clickCelcius);
+
 let currentLocation = document.querySelector("#current-location");
 currentLocation.addEventListener("click", getLocalForecast);
 // 👇👇👇 this will make Toronto default city upon load/refresh
 submitCity("Toronto");
-
-// // Feature #3
-// function clickCelcius(event) {
-//   event.preventDefault();
-//   let celciusTemp = document.querySelector("#format-temp");
-//   celciusTemp.innerHTML = "30℃";
-// }
-
-// function clickFarenheit(event) {
-//   event.preventDefault();
-//   let farenheitTemp = document.querySelector("#format-temp");
-//   farenheitTemp.innerHTML = "86℉";
-// }
-
-// let tempCel = document.querySelector("#celcius-unit");
-// let tempFar = document.querySelector("#farenheit-unit");
-
-// tempCel.addEventListener("click", clickCelcius);
-// tempFar.addEventListener("click", clickFarenheit);
