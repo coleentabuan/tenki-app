@@ -77,29 +77,45 @@ body {
   background-color: #c6cde6;
   font-family: "Raleway", sans-serif;
   text-align: center;
-  padding: 70px 0;
+  padding: 50px 0;
   max-width: 100%;
 }
+.weekly-forecast {
+  margin-top: 25px;
+}
+.weather-weekly-forecast {
+  margin-top: 25px;
+}
+.forecast-day {
+  font-size: 2rem;
+  opacity: 0.8;
+}
+.weather-forecast-temperature {
+  font-size: 1.5rem;
+}
+.forecast-temp-min {
+  opacity: 0.6;
+}
 
-.hourly-title {
+/* .hourly-title {
   font-size: 1.2rem;
   padding-top: 35px;
   font-weight: bolder;
-}
-.bottom-container {
+} */
+/* .bottom-container {
   text-align: center;
   padding: 55px 0 25px;
   max-width: 100%;
   margin-bottom: 100px;
-}
-.weekly-info {
+} */
+/* .weekly-info {
   padding-top: 20px;
   line-height: 2;
-}
-.card-title {
+} */
+/* .card-title {
   font-size: 1.5rem;
   font-weight: bolder;
-}
+} */
 .degree {
   font-size: 1.5rem;
   font-weight: bolder;
