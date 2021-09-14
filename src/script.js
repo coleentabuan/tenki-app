@@ -134,31 +134,6 @@ function getLocalForecast() {
   navigator.geolocation.getCurrentPosition(showLocation);
 }
 
-function clickFarenheit(event) {
-  event.preventDefault();
-  let farenheitTemp = document.querySelector("#format-temp");
-  tempCel.classList.remove("active");
-  tempFar.classList.add("active");
-  farenheitTemp.innerHTML = Math.round((celsiusTemperature * 9) / 5 + 32);
-}
-
-function clickCelcius(event) {
-  event.preventDefault();
-  let celciusTemp = document.querySelector("#format-temp");
-  tempCel.classList.add("active");
-  tempFar.classList.remove("active");
-  celciusTemp.innerHTML = Math.round(celsiusTemperature);
-}
-
-let celsiusTemperature = null;
-
-let tempFar = document.querySelector("#farenheit-unit");
-tempFar.addEventListener("click", clickFarenheit);
-
-let tempCel = document.querySelector("#celcius-unit");
-
-tempCel.addEventListener("click", clickCelcius);
-
 let currentLocation = document.querySelector("#current-location");
 currentLocation.addEventListener("click", getLocalForecast);
 // 👇👇👇 this will make Toronto default city upon load/refresh
