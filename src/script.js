@@ -25,57 +25,53 @@ function showCurrentDate(date) {
 let currentDate = document.querySelector("#date-time");
 currentDate.innerHTML = showCurrentDate(new Date());
 
-function displayForecast() {
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  return days[day];
+}
+function displayForecast(response) {
+  let forecast = response.data.daily;
   let forecastElement = document.querySelector("#weeklyForecast");
-  let days = ["Fri", "Sat", "Sun", "Mon", "Tue", "Wed"];
-
   let forecastHTML = `<div class="row">`;
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `<div class="col-2">
-      <div class="forecast-day">${day}</div>
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 6) {
+      forecastHTML =
+        forecastHTML +
+        `<div class="col-2">
+      <div class="forecast-day">${formatDay(forecastDay.dt)}</div>
       <img
-        src="http://openweathermap.org/img/wn/02n@2x.png"
+        src="http://openweathermap.org/img/wn/${
+          forecastDay.weather[0].icon
+        }@2x.png"
         alt=""
         width="70px"
         class="forecast-icon"
       />
       <div class="weather-forecast-temperature">
-        <span class="forecast-temp-max">19°</span>
-        <span class="forecast-temp-min">10°</span>
+        <span class="forecast-temp-max">${Math.round(
+          forecastDay.temp.max
+        )}°</span>
+        <span class="forecast-temp-min">${Math.round(
+          forecastDay.temp.min
+        )}°</span>
       </div>
     </div>`;
+    }
   });
 
   forecastHTML = forecastHTML + ` </div>`;
   forecastElement.innerHTML = forecastHTML;
 }
 
-// Feature #2
-function submitCity(city) {
-  let apiKey = "a1880a0df562212e1b2958b05ae795d4";
-  let apiEndpoint = "https://api.openweathermap.org/data/2.5/weather";
-  let units = "metric";
-  let apiUrl = `${apiEndpoint}?q=${city}&appid=${apiKey}&units=${units}`;
-  axios.get(apiUrl).then(showCityTemp);
-}
-
-// 👇👇 will overide default city upon "submit" of search form
-function handleSubmit(event) {
-  event.preventDefault();
-  let searchCityName = document.querySelector("#search-city").value;
-  submitCity(searchCityName);
-}
-
-let searchCity = document.querySelector("#city-form");
-searchCity.addEventListener("submit", handleSubmit);
-
 function getForecast(coordinates) {
   let apiKey = "a1880a0df562212e1b2958b05ae795d4";
-  let apiURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}`;
-  axios.get(apiUrl).then(displayForecast);
+  let apiURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  axios.get(apiURL).then(displayForecast);
 }
+
+// Feature #2
 
 function showCityTemp(response) {
   celsiusTemperature = response.data.main.temp;
@@ -105,6 +101,23 @@ function showCityTemp(response) {
   cityName.innerHTML = locationName;
   getForecast(response.data.coord);
 }
+function submitCity(city) {
+  let apiKey = "a1880a0df562212e1b2958b05ae795d4";
+  let apiEndpoint = "https://api.openweathermap.org/data/2.5/weather";
+  let units = "metric";
+  let apiUrl = `${apiEndpoint}?q=${city}&appid=${apiKey}&units=${units}`;
+  axios.get(apiUrl).then(showCityTemp);
+}
+
+// 👇👇 will overide default city upon "submit" of search form
+function handleSubmit(event) {
+  event.preventDefault();
+  let searchCityName = document.querySelector("#search-city").value;
+  submitCity(searchCityName);
+}
+
+let searchCity = document.querySelector("#city-form");
+searchCity.addEventListener("submit", handleSubmit);
 
 function showLocation(event) {
   let latitude = event.coords.latitude;
@@ -150,4 +163,3 @@ let currentLocation = document.querySelector("#current-location");
 currentLocation.addEventListener("click", getLocalForecast);
 // 👇👇👇 this will make Toronto default city upon load/refresh
 submitCity("Toronto");
-displayForecast();
