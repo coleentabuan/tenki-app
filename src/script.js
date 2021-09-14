@@ -95,7 +95,7 @@ function showCityTemp(response) {
     );
   let cityWindSpeed = Math.round(response.data.wind.speed);
   let displayWindSpeed = document.querySelector("#wind-value");
-  displayWindSpeed.innerHTML = `Wind: ${cityWindSpeed} m/s`;
+  displayWindSpeed.innerHTML = `Wind: ${cityWindSpeed} km/h`;
   let locationName = response.data.name;
   let cityName = document.querySelector("#city-name");
   cityName.innerHTML = locationName;
