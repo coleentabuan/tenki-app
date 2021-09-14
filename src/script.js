@@ -25,6 +25,33 @@ function showCurrentDate(date) {
 let currentDate = document.querySelector("#date-time");
 currentDate.innerHTML = showCurrentDate(new Date());
 
+function displayForecast() {
+  let forecastElement = document.querySelector("#weeklyForecast");
+  let days = ["Fri", "Sat", "Sun", "Mon", "Tue", "Wed"];
+
+  let forecastHTML = `<div class="row">`;
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `<div class="col-2">
+      <div class="forecast-day">${day}</div>
+      <img
+        src="http://openweathermap.org/img/wn/02n@2x.png"
+        alt=""
+        width="70px"
+        class="forecast-icon"
+      />
+      <div class="weather-forecast-temperature">
+        <span class="forecast-temp-max">19°</span>
+        <span class="forecast-temp-min">10°</span>
+      </div>
+    </div>`;
+  });
+
+  forecastHTML = forecastHTML + ` </div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
 // Feature #2
 function submitCity(city) {
   let apiKey = "a1880a0df562212e1b2958b05ae795d4";
@@ -43,6 +70,12 @@ function handleSubmit(event) {
 
 let searchCity = document.querySelector("#city-form");
 searchCity.addEventListener("submit", handleSubmit);
+
+function getForecast(coordinates) {
+  let apiKey = "a1880a0df562212e1b2958b05ae795d4";
+  let apiURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}`;
+  axios.get(apiUrl).then(displayForecast);
+}
 
 function showCityTemp(response) {
   celsiusTemperature = response.data.main.temp;
@@ -70,6 +103,7 @@ function showCityTemp(response) {
   let locationName = response.data.name;
   let cityName = document.querySelector("#city-name");
   cityName.innerHTML = locationName;
+  getForecast(response.data.coord);
 }
 
 function showLocation(event) {
@@ -116,3 +150,4 @@ let currentLocation = document.querySelector("#current-location");
 currentLocation.addEventListener("click", getLocalForecast);
 // 👇👇👇 this will make Toronto default city upon load/refresh
 submitCity("Toronto");
+displayForecast();
